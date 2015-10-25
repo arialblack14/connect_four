@@ -3,13 +3,19 @@ require_relative './spec_helper.rb'
 require 'rspec'
 
 describe Game do
+  let(:game) { Game.new }
+
 	it "starts score at zero for a new game" do
-		game = Game.new
 		expect(game.score).to eq(0)
 	end
 
+  xit "increases a player's score when he wins" do
+    game.add_player("Bob")
+    game.players[0].win
+    expect(game.players[0].score).to eq(1)
+  end
+
 	it "starts with no players when starting a new game" do
-		game = Game.new
 		expect(game.players).to eq([])
 	end
 
@@ -17,5 +23,10 @@ describe Game do
     game = Game.new
     game.add_player("Bob")
     expect(game.players).to eq(["Bob"])
+  end
+
+  it "first player plays on first turn" do
+    game.increase_turn
+    expect(game.turn).to eq(1)
   end
 end
