@@ -18,4 +18,8 @@ class Game
     @turn += 1
     puts "Next player's turn to play."
   end
+
+  def color player
+    player == @players[0] ? "black" : "white"
+  end
 end

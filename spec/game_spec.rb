@@ -29,4 +29,11 @@ describe Game do
     game.increase_turn
     expect(game.turn).to eq(1)
   end
+
+  it "every player has his own color" do
+    game.add_player("Alex")
+    game.add_player("Bob")
+    expect(game.color(game.players[0])).to eq("black")
+    expect(game.color(game.players[1])).to eq("white")
+  end
 end
