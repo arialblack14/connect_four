@@ -1,15 +1,21 @@
 class Game
-  attr_reader :players
+  attr_reader :players, :score, :turn
 
   def initialize
-    @players = []    
+    @players = []
+    @score = 0
+    @turn = 0
   end
 	
-  def score
-		0
-	end
-
   def add_player player
     @players << player
+  end
+
+  def win player
+  end
+
+  def increase_turn
+    @turn += 1
+    puts "Next player's turn to play."
   end
 end
