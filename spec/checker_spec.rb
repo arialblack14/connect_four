@@ -27,15 +27,10 @@ describe Checker do
       expect(checker2.x).not_to eq(1)
       expect(checker2.y).to eq(1)
     end
-  end
 
-
-    let(:game) { double :game }
-
-    it "has 2 types, either black or white" do
-      expect(game.color(@players[0])).to eq("black")
-
-      checker2 = Checker.new
-      expect(checker.color(@players[1])).to eq("white")
+    it "creates a 7x6 grid" do
+      grid = checker.create_grid(1,1)
+      expect(grid).to be_a_kind_of(Array)
     end
+  end
 end

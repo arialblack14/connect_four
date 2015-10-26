@@ -18,8 +18,8 @@ class Checker
     @y = column
   end
 
-  def type
-    @game.color(@players[0]) ? "black" : "white"
+  def create_grid cols, rows
+    Array.new(@rows_num, Array.new(@columns_num, 0))
   end
 end
 
