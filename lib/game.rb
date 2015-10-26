@@ -3,7 +3,7 @@ class Game
 
   def initialize
     @players = []
-    @score = 0
+    @score = []
     @turn = 0
   end
 	
@@ -12,6 +12,7 @@ class Game
   end
 
   def win player
+    @score.nil? ? @score[@players[0]] = 1 : @score[@players[0]] += 1
   end
 
   def increase_turn
