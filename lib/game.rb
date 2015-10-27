@@ -8,11 +8,7 @@ class Game
   end
 	
   def add_player player
-    @players << player
-  end
-
-  def win player
-    @score.nil? ? @score[@players[0]] = 1 : @score[@players[0]] += 1
+    @players << player unless @players.size == 2
   end
 
   def increase_turn

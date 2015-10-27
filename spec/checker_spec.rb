@@ -4,7 +4,7 @@ require_relative '../spec/spec_helper'
 require 'rspec'
 
 describe Checker do
-  context "checker utility methods" do
+  context "checker utility methods:" do
     let(:checker) { Checker.new }
 
     it "grid has 7 columns and 6 rows" do      
@@ -13,9 +13,8 @@ describe Checker do
     end
 
     it "drops at the bottom of the grid" do
-      checker.drop_at_column(1)
-      expect(checker.x).to eq(1)
-      expect(checker.y).to eq(1)
+      checker.drop_at_column(3, 4)
+      expect(checker.grid[3][4]).to eq(1)
     end
 
     xit "can't occupy other checker's position" do
