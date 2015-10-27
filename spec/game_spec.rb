@@ -26,8 +26,7 @@ describe Game do
     expect(game.players).to eq(["Bob"])
   end
 
-  it "first player plays when turn is an odd number" do
-    game.increase_turn
+  it "starts when turn is an odd number" do
     expect(game.turn.odd?).to be true
   end
 

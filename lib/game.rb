@@ -4,7 +4,7 @@ class Game
   def initialize
     @players = []
     @score = []
-    @turn = 0
+    @turn = 1
   end
 	
   def add_player player
@@ -12,8 +12,8 @@ class Game
   end
 
   def increase_turn
+    @turn.odd? ? (puts "First player's turn") : (puts "2nd player's turn.")
     @turn += 1
-    puts "Next player's turn to play."
   end
 
   def color player

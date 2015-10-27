@@ -6,6 +6,7 @@ require 'rspec'
 describe Checker do
   context "checker utility methods:" do
     let(:checker) { Checker.new }
+    let(:game) { double(:game, players: ["Alex", "Bob"], turn: 1) }
 
     it "grid has 7 columns and 6 rows" do      
       expect(checker.columns_num).to eq(7)
@@ -13,18 +14,15 @@ describe Checker do
     end
 
     it "drops at the bottom of the grid" do
-      checker.drop_at_column(3, 4)
-      expect(checker.grid[3][4]).to eq(1)
+      checker.drop_at_column(3, 4, "Alex")
+      expect(checker.grid[3][4]).to eq("\u2689".encode('utf-8'))
     end
 
     xit "can't occupy other checker's position" do
-      checker.drop_at_column(1)
-      checker2 = Checker.new
-      expect(checker2).to be_kind_of(Checker)
-      
-      checker2.drop_at_column(1)
-      expect(checker2.x).not_to eq(1)
-      expect(checker2.y).to eq(1)
+      checker.drop_at_column(1,1, "Alex")
+
+      checker.drop_at_column(1,1, "Bob")
+      expect(STDOUT).to receive(:puts).with("Invalid move!")
     end
 
     it "creates a 7x6 grid" do
