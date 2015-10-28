@@ -1,5 +1,4 @@
 require_relative '../lib/checker.rb'
-require_relative '../lib/game.rb'
 require_relative './spec_helper'
 require 'rspec'
 
@@ -14,25 +13,25 @@ describe Checker do
     end
 
     it "drops at the bottom of the grid" do
-      checker.drop_at_column(3, 4, "Alex")
-      expect(checker.grid[3][4]).to eq("\u2689".encode('utf-8'))
+      checker.drop_at_column(4)
+      expect(checker.grid[1][4]).to eq("\u2689".encode('utf-8'))
     end
 
-    xit "can't occupy other checker's position" do
-      checker.drop_at_column(1,1, "Alex")
-
-      checker.drop_at_column(1,1, "Bob")
-      expect(STDOUT).to receive(:puts).with("Invalid move!")
-    end
+    # xit "can't occupy other checker's position" do
+    #   checker.drop_at_column(1,1)
+    #   game.increase_turn
+    #   checker.drop_at_column(1,1)
+    #   expect(STDOUT).to receive(:puts).with("Invalid move!")
+    # end
 
     it "creates a 7x6 grid" do
       grid = checker.create_grid(1,1)
       expect(grid).to be_a_kind_of(Array)
     end
 
-    # it "displays grid at start" do
-    #   checker.create_grid(7,6)
-    #   expect(checker.grid.is_a? Array).to be true
-    # end
+    it "displays grid at start" do
+      checker.create_grid(7,6)
+      expect(checker.grid.is_a? Array).to be true
+    end
   end
 end
