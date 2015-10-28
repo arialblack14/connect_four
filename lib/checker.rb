@@ -25,16 +25,14 @@ class Checker
       new_drop player.next
     else
       puts "Invalid move!"
-      new_drop player
     end
-    grid_display @grid
   end
 
   def new_drop player
     puts "Please provide x coordinate."
-    new_x = gets.chomp.to_i
+    new_x = STDIN.gets.chomp.to_i
     puts "Now y please."
-    new_y = gets.chomp.to_i
+    new_y = STDIN.gets.chomp.to_i
     drop_at_column(new_x, new_y, player)
   end
 

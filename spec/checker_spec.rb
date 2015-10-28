@@ -1,12 +1,12 @@
 require_relative '../lib/checker.rb'
 require_relative '../lib/game.rb'
-require_relative '../spec/spec_helper'
+require_relative './spec_helper'
 require 'rspec'
 
 describe Checker do
   context "checker utility methods:" do
     let(:checker) { Checker.new }
-    let(:game) { double(:game, players: ["Alex", "Bob"], turn: 1) }
+    # let(:game) { double(:game, players: ["Alex", "Bob"], turn: 1) }
 
     it "grid has 7 columns and 6 rows" do      
       expect(checker.columns_num).to eq(7)
@@ -29,5 +29,10 @@ describe Checker do
       grid = checker.create_grid(1,1)
       expect(grid).to be_a_kind_of(Array)
     end
+
+    # it "displays grid at start" do
+    #   checker.create_grid(7,6)
+    #   expect(checker.grid.is_a? Array).to be true
+    # end
   end
 end
