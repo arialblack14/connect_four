@@ -51,6 +51,7 @@ class Checker
   end
 
   def win? y
+    y = y + 1
     (1..@rows_num).step do |i|
       if @board[i][y] != @initial_mark
         if ((@board[i][y] == @board[i+1][y] && @board[i][y] == @board[i+2][y] && @board[i][y] == @board[i+3][y] && !@board[i+1][y].nil? && !@board[i+2][y].nil? && !@board[i+3][y].nil?) || (@board[i][y] == @board[i+1][y-1] && @board[i][y] == @board[i+2][y-2] && @board[i][y] == @board[i+3][y-3] && !@board[i+1][y-1].nil? && !@board[i+2][y-2].nil? && !@board[i+3][y-3].nil?) || (@board[i][y] == @board[i+1][y+1] && @board[i][y] == @board[i+2][y+2] && @board[i][y] == @board[i+3][y+3] && !@board[i+1][y+1].nil? && !@board[i+2][y+2].nil? && !@board[i+3][y+3].nil?) || (@board[i][y] == @board[i][y+1] && @board[i][y] == @board[i][y+2] && @board[i][y] == @board[i][y+3] && !@board[i][y+1].nil? && !@board[i][y+2].nil? && !@board[i][y+3].nil?) && !@board[i][y].nil?)
