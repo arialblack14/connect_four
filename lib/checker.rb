@@ -20,18 +20,17 @@ class Checker
 
   def drop_at_column y
     check_spot y
-    puts @x
     if @board[@x][y] == @initial_mark
       if @game.turn.odd?
         @board[@x][y] = "\u2689".encode('utf-8')
       else
         @board[@x][y] = "\u2687".encode('utf-8')
       end
-      win? y
     else
-      puts "That column is already full."
+      puts "Invalid choice."
       new_drop
     end
+    win? y
     @game.increase_turn
     board_display
     new_drop
@@ -43,6 +42,8 @@ class Checker
     drop_at_column(new_y.to_i-1) # Indexing at 1 not 0
   end
 
+  # This is to only change @x if no other checkers have 
+  # been dropped at that position.
   def check_spot y
     (0..@rows_num-1).step do |i|
       return @x = i if @board[i][y] == @initial_mark
@@ -50,13 +51,11 @@ class Checker
   end
 
   def win? y
-    if @board[@x][y] == @board[@x-1][y]
-      if @board[@x][y] == @board[@x-2][y]
-        if @board[@x][y] == @board[@x-3][y]
-          if @board[@x][y] == @board[@x-4][y]
-            puts "WIN!!"
-            exit
-          end
+    (1..@rows_num).step do |i|
+      if @board[i][y] != @initial_mark
+        if ((@board[i][y] == @board[i+1][y] && @board[i][y] == @board[i+2][y] && @board[i][y] == @board[i+3][y] && !@board[i+1][y].nil? && !@board[i+2][y].nil? && !@board[i+3][y].nil?) || (@board[i][y] == @board[i+1][y-1] && @board[i][y] == @board[i+2][y-2] && @board[i][y] == @board[i+3][y-3] && !@board[i+1][y-1].nil? && !@board[i+2][y-2].nil? && !@board[i+3][y-3].nil?) || (@board[i][y] == @board[i+1][y+1] && @board[i][y] == @board[i+2][y+2] && @board[i][y] == @board[i+3][y+3] && !@board[i+1][y+1].nil? && !@board[i+2][y+2].nil? && !@board[i+3][y+3].nil?) || (@board[i][y] == @board[i][y+1] && @board[i][y] == @board[i][y+2] && @board[i][y] == @board[i][y+3] && !@board[i][y+1].nil? && !@board[i][y+2].nil? && !@board[i][y+3].nil?) && !@board[i][y].nil?)
+          puts "You WON!!"
+          exit
         end
       end
     end
