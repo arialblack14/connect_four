@@ -51,11 +51,50 @@ class Checker
   end
 
   def win? y
+    # y = y + 1
+    # (1..@rows_num).step do |i|
+    #   if @board[@x][y] != @initial_mark
+    #     if ((@board[@x][y] == @board[@x+1][y] && @board[@x][y] == @board[@x+2][y] && @board[@x][y] == @board[@x+3][y] && !@board[@x+1][y].nil? && !@board[@x+2][y].nil? && !@board[@x+3][y].nil?) || (@board[@x][y] == @board[@x+1][y-1] && @board[@x][y] == @board[@x+2][y-2] && @board[@x][y] == @board[@x+3][y-3] && !@board[@x+1][y-1].nil? && !@board[@x+2][y-2].nil? && !@board[@x+3][y-3].nil?) || (@board[@x][y] == @board[@x+1][y+1] && @board[@x][y] == @board[@x+2][y+2] && @board[@x][y] == @board[@x+3][y+3] && !@board[@x+1][y+1].nil? && !@board[@x+2][y+2].nil? && !@board[@x+3][y+3].nil?) || (@board[@x][y] == @board[@x][y+1] && @board[@x][y] == @board[@x][y+2] && @board[@x][y] == @board[@x][y+3] && !@board[@x][y+1].nil? && !@board[@x][y+2].nil? && !@board[@x][y+3].nil?) && !@board[@x][y].nil?)
+    #       puts "You WON!!"
+    #       exit
+    #     end
+    #   end
+    # end
+    check_vertical y
+    check_horizontal y
+    check_diagonal y
+  end
+
+  def check_vertical y
     y = y + 1
     (1..@rows_num).step do |i|
-      if @board[i][y] != @initial_mark
-        if ((@board[i][y] == @board[i+1][y] && @board[i][y] == @board[i+2][y] && @board[i][y] == @board[i+3][y] && !@board[i+1][y].nil? && !@board[i+2][y].nil? && !@board[i+3][y].nil?) || (@board[i][y] == @board[i+1][y-1] && @board[i][y] == @board[i+2][y-2] && @board[i][y] == @board[i+3][y-3] && !@board[i+1][y-1].nil? && !@board[i+2][y-2].nil? && !@board[i+3][y-3].nil?) || (@board[i][y] == @board[i+1][y+1] && @board[i][y] == @board[i+2][y+2] && @board[i][y] == @board[i+3][y+3] && !@board[i+1][y+1].nil? && !@board[i+2][y+2].nil? && !@board[i+3][y+3].nil?) || (@board[i][y] == @board[i][y+1] && @board[i][y] == @board[i][y+2] && @board[i][y] == @board[i][y+3] && !@board[i][y+1].nil? && !@board[i][y+2].nil? && !@board[i][y+3].nil?) && !@board[i][y].nil?)
-          puts "You WON!!"
+      if (@grid[i][y] != @initial_mark)
+        if @grid[i][y] == @grid[i+1][y] && @grid[i][y] == @grid[i+2][y] && @grid[i][y] == @grid[i+3][y] 
+          puts "Vertical win!"
+          exit
+        end
+      end
+    end
+  end
+
+  def check_horizontal y
+    y = y + 1
+    (1..@rows_num).step do |i|
+      if (@grid[i][y] != @initial_mark)
+        if @grid[i][y] == @grid[i][y+1] && @grid[i][y] == @grid[i][y+2] && @grid[i][y] == @grid[i][y+3] 
+          puts "Horizontal win!"
+          exit
+        end
+      end
+    end
+  end
+
+  def check_diagonal y
+    y = y + 1
+    (1..@rows_num).step do |i|
+      if (@grid[i][y] != @initial_mark)
+        if @grid[i][y] == @grid[i+1][y+1] && @grid[i][y] == @grid[i+2][y+2] && @grid[i][y] == @grid[i+3][y+3] 
+          puts "Diagonal win!"
           exit
         end
       end
